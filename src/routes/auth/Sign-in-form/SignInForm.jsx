@@ -30,6 +30,7 @@ function SignInForm() {
     const { user } = await signInWithGooglePopup();
     console.log("logGoogleUser", user);
     await createUserDocumentFromAuth(user);
+    alert("user loged in succesfully");
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -39,10 +40,19 @@ function SignInForm() {
       const response = await SignInWithEmailAndPassword(email, password);
       alert(`user email ${response.user.email} loged in sussefuly`);
     } catch (error) {
-      if (error.code === "auth/invalid-credential") {
-        alert("the email or the password are not correct ");
+      switch (error.code) {
+        case "auth/invalid-credential":
+          alert("email or password are not correct");
+          break;
+        case "auth/wrong-password":
+          alert("incorrect password for email");
+          break;
+        case "auth/user-not-found":
+          alert("no user associated with this email");
+          break;
+        default:
+          alert(error);
       }
-      console.log("error throught user creation", error);
     }
   };
   return (
