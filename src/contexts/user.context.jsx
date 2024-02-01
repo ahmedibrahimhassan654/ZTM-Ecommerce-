@@ -15,9 +15,10 @@ export const UserProvider = ({ children }) => {
     currentUser,
     setCurrentUser,
   };
+  console.log("value", value);
   //انا عاوز اباصى فاليو جوه اليوزر كونتكست بروفيدر  الا وهى الكرنت يوزر وحتى السيت كرنت يوزر بحيث اقدر ااكسسهم من داخل الى كومبونتت من الشيلدرن اللى تحتيها
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
-//  App Component(parent) وهحاوط بيه ال  UserProvider كده انا هاخد ال 
-//    UserContext علشان اعرف احصل على اى فاليو من جوه ال الاستات اللى جايالى من ال 
+//  App Component(parent) وهحاوط بيه ال  UserProvider كده انا هاخد ال
+//    UserContext علشان اعرف احصل على اى فاليو من جوه ال الاستات اللى جايالى من ال
