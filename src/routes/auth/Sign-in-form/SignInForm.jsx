@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./signin-form.stylr.scss";
 import {
-  SignInWithEmailAndPassword,
+  signInAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
   signInWithGooglePopup,
 } from "../../../utils/firbase/firebaseutils";
 import FormInput from "../../../components/form-input/FormInputComp";
 import Button from "../../../components/button/Button";
+import { UserContext } from "../../../contexts/user.context";
 
 const defaultFormField = {
   email: "",
@@ -16,10 +17,10 @@ const defaultFormField = {
 function SignInForm() {
   const [formFields, setformFields] = useState(defaultFormField);
   const { email, password } = formFields;
-
-  const resetFormFields = () => {
-    setformFields(defaultFormField);
-  };
+  const { setCurrentUser } = useContext(UserContext);
+  // const resetFormFields = () => {
+  //   setformFields(defaultFormField);
+  // };
   const handleChange = (event) => {
     const { name, value } = event.target;
     setformFields({ ...formFields, [name]: value });
@@ -37,8 +38,14 @@ function SignInForm() {
 
     //createAuthUserWithEmailAndPassword
     try {
-      const response = await SignInWithEmailAndPassword(email, password);
-      alert(`user email ${response.user.email} loged in sussefuly`);
+      const { user } = await signInAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
+      // const { user } = response;
+      setCurrentUser(user);
+      console.log("response", user);
+      alert(`user email ${user} loged in sussefuly`);
     } catch (error) {
       switch (error.code) {
         case "auth/invalid-credential":

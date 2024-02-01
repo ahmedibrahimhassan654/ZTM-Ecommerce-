@@ -55,6 +55,8 @@ function SignUpForm() {
       //   createdUser.displayName
       // );
       console.log("created document", createdUser);
+      alert("user regetered sucssfully ");
+
       resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
