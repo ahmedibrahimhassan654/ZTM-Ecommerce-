@@ -6,11 +6,11 @@ import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firbase/firebaseutils";
 
 function Navigation() {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-  const signOutHandler = async () => {
-    await signOutUser();
-    setCurrentUser(null);
-  };
+  const { currentUser } = useContext(UserContext);
+  // const signOutHandler = async () => {
+  //   await signOutUser();
+  //   setCurrentUser(null);
+  // };
   return (
     <Fragment>
       <div className="navigation">
@@ -26,7 +26,7 @@ function Navigation() {
             Shop
           </Link>
           {currentUser ? (
-            <span className="nav-link" onClick={signOutHandler}>
+            <span className="nav-link" onClick={signOutUser}>
               Sign Out
             </span>
           ) : (

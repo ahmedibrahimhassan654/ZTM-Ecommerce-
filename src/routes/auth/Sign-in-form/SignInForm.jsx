@@ -1,4 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, {
+  //useContext,
+  useState,
+} from "react";
 import "./signin-form.stylr.scss";
 import {
   signInAuthUserWithEmailAndPassword,
@@ -7,7 +10,7 @@ import {
 } from "../../../utils/firbase/firebaseutils";
 import FormInput from "../../../components/form-input/FormInputComp";
 import Button from "../../../components/button/Button";
-import { UserContext } from "../../../contexts/user.context";
+// import { UserContext } from "../../../contexts/user.context";
 
 const defaultFormField = {
   email: "",
@@ -17,10 +20,10 @@ const defaultFormField = {
 function SignInForm() {
   const [formFields, setformFields] = useState(defaultFormField);
   const { email, password } = formFields;
-  const { setCurrentUser } = useContext(UserContext);
-  // const resetFormFields = () => {
-  //   setformFields(defaultFormField);
-  // };
+  // const { setCurrentUser } = useContext(UserContext);
+  const resetFormFields = () => {
+    setformFields(defaultFormField);
+  };
   const handleChange = (event) => {
     const { name, value } = event.target;
     setformFields({ ...formFields, [name]: value });
@@ -42,9 +45,10 @@ function SignInForm() {
         email,
         password
       );
+      resetFormFields();
       // const { user } = response;
-      setCurrentUser(user);
-      console.log("response", user);
+      // setCurrentUser(user);
+      // console.log("response", user);
       alert(`user email ${user} loged in sussefuly`);
     } catch (error) {
       switch (error.code) {

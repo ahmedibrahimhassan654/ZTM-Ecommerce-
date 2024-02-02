@@ -1,4 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, {
+  //useContext,
+  useState,
+} from "react";
 import "./signup-form.stylr.scss";
 import {
   createAuthUserWithEmailAndPassword,
@@ -6,7 +9,7 @@ import {
 } from "../../../utils/firbase/firebaseutils";
 import FormInput from "../../../components/form-input/FormInputComp";
 import Button from "../../../components/button/Button";
-import { UserContext } from "../../../contexts/user.context";
+// import { UserContext } from "../../../contexts/user.context";
 
 const defaultFormField = {
   displayName: "",
@@ -18,7 +21,7 @@ const defaultFormField = {
 function SignUpForm() {
   const [formFields, setformFields] = useState(defaultFormField);
   const { displayName, confirmPassword, email, password } = formFields;
-  const { setCurrentUser } = useContext(UserContext);
+  // const { setCurrentUser } = useContext(UserContext);
 
   const resetFormFields = () => {
     setformFields(defaultFormField);
@@ -55,7 +58,7 @@ function SignUpForm() {
       //   `user ${createdUser.displayName} created succsefuly`,
       //   createdUser.displayName
       // );
-      setCurrentUser(user);
+      // setCurrentUser(user);
 
       // console.log("created document update user reducerr", createdUser);
       // console.log("user", user);
