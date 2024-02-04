@@ -4,6 +4,8 @@ import "./navigation.Style.scss";
 import { ReactComponent as Crownlogo } from "../../assets/crown.svg";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firbase/firebaseutils";
+import CartIcon from "../../components/cart-icon/cart-icon";
+import CartDropDown from "../../components/Cart-Drop-Down/CartDropDown";
 
 function Navigation() {
   const { currentUser } = useContext(UserContext);
@@ -34,11 +36,12 @@ function Navigation() {
               Login
             </Link>
           )}
-
+          <CartIcon />
           {/* <Link className="link" to="/blog">
             Blog
           </Link> */}
         </div>
+        <CartDropDown />
       </div>
       <Outlet />
     </Fragment>
