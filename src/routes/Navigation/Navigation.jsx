@@ -6,9 +6,12 @@ import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firbase/firebaseutils";
 import CartIcon from "../../components/cart-icon/cart-icon";
 import CartDropDown from "../../components/Cart-Drop-Down/CartDropDown";
+import { CartContext } from "../../contexts/cart.context";
 
 function Navigation() {
   const { currentUser } = useContext(UserContext);
+  const { isCartOpen } = useContext(CartContext);
+
   // const signOutHandler = async () => {
   //   await signOutUser();
   //   setCurrentUser(null);
@@ -41,7 +44,7 @@ function Navigation() {
             Blog
           </Link> */}
         </div>
-        <CartDropDown />
+        {isCartOpen && <CartDropDown />}
       </div>
       <Outlet />
     </Fragment>

@@ -16,7 +16,7 @@ export const ProductsProvider = ({ children }) => {
   };
 
   console.log(
-    "final value object that witll inserted to the user provider",
+    "final value object that witll inserted to the product provider",
     value
   );
   return (
