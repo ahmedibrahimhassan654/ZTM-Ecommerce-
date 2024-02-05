@@ -5,12 +5,13 @@ import PRODUCTS from "../shop-data.json";
 export const ProductsContext = createContext({
   //initial value for our context
   products: [],
+  setproducts: () => {},
 });
 
 //act as component cover the heigh level component which is App compnent
 export const ProductsProvider = ({ children }) => {
   //store the user object inside current user state
-  const [products, setproducts] = useState(PRODUCTS);
+  const [products] = useState(PRODUCTS);
   const value = {
     products,
   };
