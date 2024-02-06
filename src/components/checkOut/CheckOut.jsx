@@ -1,51 +1,39 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../contexts/cart.context";
-
+import "./checkout.style.scss";
+import CheckOutItem from "../checkOutItems/CheckOutItem";
 function CheckOut() {
   const { cartItems, addItemToCart, removeItemFromCart } =
     useContext(CartContext);
 
   return (
     <>
-      <div>
-        <h1>Iam checkout page</h1>
-        <div>
-          {cartItems.map((cartItem) => {
-            const { name, quantity } = cartItem;
-            return (
-              <>
-                <div>
-                  <h2>{name}</h2>
-                  <span>{quantity}</span>
-                  <br />
-                  <span
-                    onClick={() => {
-                      removeItemFromCart(cartItem);
-                    }}
-                  >
-                    decrement
-                  </span>
-                  <br />
-                  <span
-                    onClick={() => {
-                      addItemToCart(cartItem);
-                    }}
-                  >
-                    increment
-                  </span>
-                  <br />
-                  {/* <span
-                    onClick={() => {
-                      removeItemFromCart(cartItem.id);
-                    }}
-                  >
-                    delete item
-                  </span> */}
-                </div>
-              </>
-            );
-          })}
+      <div className="checkout-container">
+        <div className="checkout-header">
+          <div className="header-block">
+            <span>Product</span>
+          </div>
+          <div className="header-block">
+            <span>Description</span>
+          </div>
+          <div className="header-block">
+            <span>Quantity</span>
+          </div>
+          <div className="header-block">
+            <span>Price</span>
+          </div>
+          <div className="header-block">
+            <span>Remove</span>
+          </div>
         </div>
+        {cartItems.map((cartItem) => (
+          <CheckOutItem
+            key={cartItem.id}
+            cartItem={cartItem}
+            removeItemFromCart={removeItemFromCart}
+          />
+        ))}
+        <span className="total">Total: $0</span>
       </div>
     </>
   );
