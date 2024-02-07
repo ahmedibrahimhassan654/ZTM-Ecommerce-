@@ -1,7 +1,10 @@
 import { createContext, useEffect, useState } from "react";
 
-import SHOP_DATA from "../shop-data";
-import { addCollectionAndDocuments } from "../utils/firbase/firebaseutils";
+// import SHOP_DATA from "../shop-data";
+import {
+  // addCollectionAndDocuments,
+  getCategoriesAndDocuments,
+} from "../utils/firbase/firebaseutils";
 // as the actual value you want to access
 export const ProductsContext = createContext({
   //initial value for our context
@@ -15,7 +18,13 @@ export const ProductsProvider = ({ children }) => {
   const [products] = useState([]);
 
   useEffect(() => {
-    addCollectionAndDocuments("categories", SHOP_DATA);
+    // asyn  -await بعملها جواها   promise =>(getCategoriesAndDocuments) داخل اليوز ايفك لو انا هعمل جواها
+    const getCategoriesMap = async () => {
+      const categoryMap = await getCategoriesAndDocuments();
+      console.log(categoryMap);
+      JSON.stringify(categoryMap);
+    };
+    getCategoriesMap();
   }, []);
 
   const value = {
