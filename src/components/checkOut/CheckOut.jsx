@@ -3,8 +3,7 @@ import { CartContext } from "../../contexts/cart.context";
 import "./checkout.style.scss";
 import CheckOutItem from "../checkOutItems/CheckOutItem";
 function CheckOut() {
-  const { cartItems, addItemToCart, removeItemFromCart } =
-    useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
 
   return (
     <>
@@ -26,11 +25,12 @@ function CheckOut() {
             <span>Remove</span>
           </div>
         </div>
+        {console.log(cartItems)}
         {cartItems.map((cartItem) => (
           <CheckOutItem
             key={cartItem.id}
             cartItem={cartItem}
-            removeItemFromCart={removeItemFromCart}
+            //  removeItemFromCart={removeItemFromCart}
           />
         ))}
         <span className="total">Total: $0</span>

@@ -4,7 +4,7 @@ import { CartContext } from "../../contexts/cart.context";
 function CartItem({ cartItem }) {
   const { name, quantity, imageUrl, price } = cartItem;
 
-  const { removeItemFromCart } = useContext(CartContext);
+  const { removeItemToCart } = useContext(CartContext);
   return (
     <>
       <div className="cart-item-container">
@@ -17,7 +17,7 @@ function CartItem({ cartItem }) {
         </div>
         <span
           onClick={() => {
-            removeItemFromCart(cartItem);
+            removeItemToCart(cartItem);
           }}
         >
           delete item
