@@ -6,38 +6,38 @@ import {
   getCategoriesAndDocuments,
 } from "../utils/firbase/firebaseutils";
 // as the actual value you want to access
-export const ProductsContext = createContext({
+export const CategoriesContext = createContext({
   //initial value for our context
-  products: [],
-  setproducts: () => {},
+  categoriesMap: {},
+  setcategoriesMap: () => {},
 });
 
 //act as component cover the heigh level component which is App compnent
-export const ProductsProvider = ({ children }) => {
+export const CategoriesProvider = ({ children }) => {
   //store the user object inside current user state
-  const [products] = useState([]);
+  const [categoriesMap, setcategoriesMap] = useState({});
 
   useEffect(() => {
     // asyn  -await بعملها جواها   promise =>(getCategoriesAndDocuments) داخل اليوز ايفك لو انا هعمل جواها
     const getCategoriesMap = async () => {
       const categoryMap = await getCategoriesAndDocuments();
       console.log(categoryMap);
-      JSON.stringify(categoryMap);
+      setcategoriesMap(categoryMap);
     };
     getCategoriesMap();
   }, []);
 
   const value = {
-    products,
+    categoriesMap,
   };
 
   console.log(
-    "final value object that witll inserted to the product provider",
+    "final value object that witll inserted to the categories provider",
     value
   );
   return (
-    <ProductsContext.Provider value={value}>
+    <CategoriesContext.Provider value={value}>
       {children}
-    </ProductsContext.Provider>
+    </CategoriesContext.Provider>
   );
 };
