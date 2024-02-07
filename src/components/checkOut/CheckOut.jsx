@@ -3,7 +3,7 @@ import { CartContext } from "../../contexts/cart.context";
 import "./checkout.style.scss";
 import CheckOutItem from "../checkOutItems/CheckOutItem";
 function CheckOut() {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, cartTotal } = useContext(CartContext);
 
   return (
     <>
@@ -33,7 +33,7 @@ function CheckOut() {
             //  removeItemFromCart={removeItemFromCart}
           />
         ))}
-        <span className="total">Total: $0</span>
+        <span className="total">Total: ${cartTotal}</span>
       </div>
     </>
   );
