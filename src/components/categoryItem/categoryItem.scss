@@ -58,11 +58,17 @@
       margin: 0 6px 0;
       font-size: 22px;
       color: #4a4a4a;
+      &:hover {
+        color: #c4c5e4;
+      }
     }
 
     p {
       font-weight: lighter;
       font-size: 16px;
+      &:hover {
+        color: #292eca;
+      }
     }
   }
 }
