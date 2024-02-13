@@ -9,7 +9,7 @@ import {
   signInWithGooglePopup,
 } from "../../../utils/firbase/firebaseutils";
 import FormInput from "../../../components/form-input/FormInputComp";
-import Button from "../../../components/button/Button";
+import Button, { BUTTON_TYPE_CLASSES } from "../../../components/button/Button";
 // import { UserContext } from "../../../contexts/user.context";
 
 const defaultFormField = {
@@ -104,7 +104,11 @@ function SignInForm() {
         /> */}
         <div className="button-container">
           <Button type="submit">Sign In</Button>
-          <Button type="button" onClick={signIinWithGoogle} buttonType="google">
+          <Button
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            type="button"
+            onClick={signIinWithGoogle}
+          >
             Sign In with google
           </Button>
         </div>
