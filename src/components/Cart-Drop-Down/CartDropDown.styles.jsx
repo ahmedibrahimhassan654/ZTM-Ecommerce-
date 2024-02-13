@@ -1,4 +1,11 @@
-.cart-dropdown-container {
+import styled from "styled-components";
+
+import {
+  BaseButton,
+  GoogleSignInButton,
+  InvertedButton,
+} from "../button/button.style";
+export const CartDropDownContainer = styled.div`
   position: absolute;
   width: 240px;
   height: 340px;
@@ -10,21 +17,40 @@
   top: 90px;
   right: 40px;
   z-index: 5;
-
-  .empty-message {
-    font-size: 18px;
-    margin: 50px auto;
-  }
-
-  .cart-items {
-    height: 240px;
-    display: flex;
-    flex-direction: column;
-    overflow: scroll;
-  }
-
-  button {
+  ${BaseButton},${GoogleSignInButton},${InvertedButton} {
     margin: 20px 0px;
     justify-content: center;
   }
-}
+`;
+
+export const EmptyMessage = styled.span`
+  font-size: 20px;
+  margin: 50px auto;
+  color: blue;
+`;
+
+export const CartItems = styled.div`
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+`;
+
+// export const button = styled.div`
+//   margin: 20px 0px;
+//   justify-content: center;
+// `;
+// .cart - dropdown - container {
+
+//   .empty-message {
+
+//   }
+
+//   .cart-items {
+//
+//   }
+
+//   button {
+//
+//   }
+// }
