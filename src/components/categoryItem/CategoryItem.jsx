@@ -6,7 +6,7 @@ import {
   LinkHeader,
   LinkPharagraf,
 } from "./categoryItem.style";
-import { Link } from "react-router-dom";
+
 export default function CategoryItem({ category }) {
   const { title, id, imageUrl } = category;
   return (
