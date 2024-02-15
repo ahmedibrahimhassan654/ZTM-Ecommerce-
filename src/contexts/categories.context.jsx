@@ -21,7 +21,6 @@ export const CategoriesProvider = ({ children }) => {
     // asyn  -await بعملها جواها   promise =>(getCategoriesAndDocuments) داخل اليوز ايفك لو انا هعمل جواها
     const getCategoriesMap = async () => {
       const categoryMap = await getCategoriesAndDocuments();
-      console.log(categoryMap);
       setcategoriesMap(categoryMap);
     };
     getCategoriesMap();
@@ -31,10 +30,6 @@ export const CategoriesProvider = ({ children }) => {
     categoriesMap,
   };
 
-  console.log(
-    "final value object that witll inserted to the categories provider",
-    value
-  );
   return (
     <CategoriesContext.Provider value={value}>
       {children}

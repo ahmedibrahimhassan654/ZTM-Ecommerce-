@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useReducer } from "react";
 import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
@@ -11,35 +11,75 @@ export const UserContext = createContext({
   setCurrentUser: () => null,
 });
 
+const USER_ACTION_TYPES = {
+  SET_CUURENT_USER: "SET_CUURENT_USER",
+};
+
+//reducer part
+const userReducer = (state, action) => {
+  console.log("dispatch");
+  console.log(action);
+  const { type, payload } = action;
+
+  switch (type) {
+    case USER_ACTION_TYPES.SET_CUURENT_USER:
+      return {
+        ...state,
+        currentUser: payload,
+      };
+
+    default:
+      throw new Error(`unHadeled type${type} in the user reducers`);
+  }
+};
+
+const InitialState = {
+  currentUser: null,
+};
+
 //act as component cover the heigh level component which is App compnent
 export const UserProvider = ({ children }) => {
   //store the user object inside current user state
-  const [currentUser, setCurrentUser] = useState(null);
+  // const [currentUser, setCurrentUser] = useState(null);
+
+  const [state, dispatch] = useReducer(userReducer, InitialState);
+  const { currentUser } = state;
+
+  console.log("currentUser", currentUser);
+  const setCurrentUser = (user) => {
+    dispatch({ type: USER_ACTION_TYPES.SET_CUURENT_USER, payload: user });
+  };
+
   const value = {
     currentUser,
     setCurrentUser,
   };
   useEffect(() => {
     const unsubscripe = onAuthStateChangedListener((user) => {
-      console.log("user gets from on auth listener callback  ", user);
       if (user) {
         createUserDocumentFromAuth(user);
       }
       setCurrentUser(user);
-      console.log(
-        "currentUser state after we set it from lesiener ",
-        currentUser
-      );
     });
     return unsubscripe;
   }, [currentUser]);
-  console.log(
-    "final value object that witll inserted to the user provider",
-    value
-  );
+
   //انا عاوز اباصى فاليو جوه اليوزر كونتكست بروفيدر  الا وهى الكرنت يوزر وحتى السيت كرنت يوزر بحيث اقدر ااكسسهم من داخل الى كومبونتت من الشيلدرن اللى تحتيها
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
 //  App Component(parent) وهحاوط بيه ال  UserProvider كده انا هاخد ال
 //    UserContext علشان اعرف احصل على اى فاليو من جوه ال الاستات اللى جايالى من ال
+
+//  user reducer الجزء الخاص
+
+/**
+ 
+ const userReducer =(state,action)=>{
+ return{
+ //return new object
+ currentUser:
+ }
+ }
+ 
+ */
