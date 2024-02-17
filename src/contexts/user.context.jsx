@@ -15,6 +15,9 @@ export const UserContext = createContext({
 const USER_ACTION_TYPES = {
   SET_CUURENT_USER: "SET_CUURENT_USER",
 };
+const InitialState = {
+  currentUser: null,
+};
 
 //reducer part
 const userReducer = (state, action) => {
@@ -32,10 +35,6 @@ const userReducer = (state, action) => {
     default:
       throw new Error(`unHadeled type${type} in the user reducers`);
   }
-};
-
-const InitialState = {
-  currentUser: null,
 };
 
 //act as component cover the heigh level component which is App compnent
