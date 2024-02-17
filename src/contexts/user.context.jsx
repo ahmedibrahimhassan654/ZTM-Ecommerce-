@@ -3,6 +3,7 @@ import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
 } from "../utils/firbase/firebaseutils";
+import { createAction } from "../utils/reducer/reducer.utils";
 
 // as the actual value you want to access
 export const UserContext = createContext({
@@ -47,7 +48,7 @@ export const UserProvider = ({ children }) => {
 
   console.log("currentUser", currentUser);
   const setCurrentUser = (user) => {
-    dispatch({ type: USER_ACTION_TYPES.SET_CUURENT_USER, payload: user });
+    dispatch(createAction(USER_ACTION_TYPES.SET_CUURENT_USER, user));
   };
 
   const value = {
