@@ -1,5 +1,11 @@
-import { compose, createStore, applyMiddleware } from "redux";
+import {
+  compose,
+  applyMiddleware,
+  legacy_createStore as createStore,
+} from "redux";
+// import {  } from "redux";
 import logger from "redux-logger";
+// import { configureStore } from "@reduxjs/toolkit";
 
 import { rootreducer } from "./root-reducer";
 
