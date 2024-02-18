@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./shop.style.scss";
 import { Routes, Route } from "react-router-dom";
 import CategoriesPreview from "../categories-preview/Categories-Preview";
 import Category from "../category/Category";
+import { getCategoriesAndDocuments } from "../../utils/firbase/firebaseutils";
+import { setcategoriesMap } from "../../store/categories/category.action";
+import { useDispatch } from "react-redux";
 const Shop = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // asyn  -await بعملها جواها   promise =>(getCategoriesAndDocuments) داخل اليوز ايفك لو انا هعمل جواها
+    const getCategoriesMap = async () => {
+      const categoryMap = await getCategoriesAndDocuments();
+      dispatch(setcategoriesMap(categoryMap));
+    };
+    getCategoriesMap();
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route index element={<CategoriesPreview />} /> {/*shop */}
