@@ -32,7 +32,7 @@ function CheckOut() {
             <span>Remove</span>
           </div>
         </div>
-        {console.log(cartItems)}
+      
         {cartItems.map((cartItem) => (
           <CheckOutItem
             key={cartItem.id}

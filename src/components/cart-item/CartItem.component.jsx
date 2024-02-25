@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+// import React, { useContext } from "react";
 import "./cartItem.style.scss";
-import { CartContext } from "../../contexts/cart.context";
+// import { CartContext } from "../../contexts/cart.context";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItemToCart } from "../../store/cart/cart.action";
 import { selectCartItems } from "../../store/cart/cart.selector";
