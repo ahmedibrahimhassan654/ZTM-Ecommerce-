@@ -1,10 +1,15 @@
 import React, { useContext } from "react";
 import "./cartItem.style.scss";
 import { CartContext } from "../../contexts/cart.context";
+import { useDispatch, useSelector } from "react-redux";
+import { removeItemToCart } from "../../store/cart/cart.action";
+import { selectCartItems } from "../../store/cart/cart.selector";
+
 function CartItem({ cartItem }) {
   const { name, quantity, imageUrl, price } = cartItem;
-
-  const { removeItemToCart } = useContext(CartContext);
+  const dispatch = useDispatch();
+  // const { removeItemToCart } = useContext(CartContext);
+  const cartItems = useSelector(selectCartItems);
   return (
     <>
       <div className="cart-item-container">
@@ -17,7 +22,7 @@ function CartItem({ cartItem }) {
         </div>
         <span
           onClick={() => {
-            removeItemToCart(cartItem);
+            dispatch(removeItemToCart(cartItems, cartItem));
           }}
         >
           delete item

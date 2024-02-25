@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import "./checkoutitem.style.scss";
 import { CartContext } from "../../contexts/cart.context";
 
+
+
+
 function CheckOutItem({ cartItem }) {
   const { name, quantity, imageUrl, price } = cartItem;
 
