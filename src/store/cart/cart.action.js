@@ -4,25 +4,6 @@ import { createAction } from "../../utils/reducer/reducer.utils";
 export const setIsCartOpen = (boolean) =>
   createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, boolean);
 
-const updateCartItemReducer = (newCartItems) => {
-  const newCartTotal = newCartItems.reduce(
-    (total, cartItem) => total + cartItem.quantity * cartItem.price,
-    0
-  );
-  const newCartCount = newCartItems.reduce(
-    (total, cartItem) => total + cartItem.quantity,
-    0
-  );
-
-  // dispatch(
-  //   createAction(CART_ACTION_TYPES.SET_CART_ITEMS, {
-  //     cartItems: newCartItems,
-  //     cartTotal: newCartTotal,
-  //     cartCount: newCartCount,
-  //   })
-  // );
-};
-
 const addCartItem = (cartItems, productToAdd) => {
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === productToAdd.id
@@ -61,17 +42,17 @@ const removeCartItem = (cartItems, cartItemToRemove) => {
 const clearCartItem = (cartItems, cartItemToClear) =>
   cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
 
-const addItemToCart = (cartItems, productToAdd) => {
+export const addItemToCart = (cartItems, productToAdd) => {
   const newCartItems = addCartItem(cartItems, productToAdd);
-  return createAction(CART_ACTION_TYPES.SET_CART_COUNT, newCartItems);
+  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
 };
 
-const removeItemToCart = (cartItems, cartItemToRemove) => {
+export const removeItemToCart = (cartItems, cartItemToRemove) => {
   const newCartItems = removeCartItem(cartItems, cartItemToRemove);
-  return createAction(CART_ACTION_TYPES.SET_CART_COUNT, newCartItems);
+  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
 };
 
-const clearItemFromCart = (cartItems, cartItemToClear) => {
+export const clearItemFromCart = (cartItems, cartItemToClear) => {
   const newCartItems = clearCartItem(cartItems, cartItemToClear);
-  return createAction(CART_ACTION_TYPES.SET_CART_COUNT, newCartItems);
+  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
 };
