@@ -9,13 +9,16 @@ import logger from "redux-logger";
 // import { configureStore } from "@reduxjs/toolkit";
 
 import { rootReducer } from "./root-reducer";
+import { thunk } from "redux-thunk";
 // import { loggerMiddleware } from "../utils/middelwares/loggerMiddleware";
 
 // root reducer
 // const middelware = [loggerMiddleware];
-const middelware = [process.env.NODE_ENV !== "production" && logger].filter(
-  Boolean
-);
+const middelware = [
+  process.env.NODE_ENV !== "production" && logger,
+  thunk,
+].filter(Boolean);
+
 const composeEnhancer =
   (process.env.NODE_ENV !== "production" &&
     window &&
@@ -24,7 +27,7 @@ const composeEnhancer =
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["user"],
+  blacklist: ["user", "categories"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
